@@ -46,6 +46,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
     androidTestImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+    api "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
 
     // UI
     implementation "com.google.android.material:material:$materialVersion"
