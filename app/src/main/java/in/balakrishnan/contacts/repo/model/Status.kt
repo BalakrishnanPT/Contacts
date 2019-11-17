@@ -1,4 +1,4 @@
-package `in`.balakrishnan.contacts.model
+package `in`.balakrishnan.contacts.repo.model
 
 import androidx.annotation.Keep
 
