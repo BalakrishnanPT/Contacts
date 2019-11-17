@@ -13,9 +13,14 @@ interface ContactDao {
     @Query("SELECT * from Contact ORDER BY name ASC")
     fun getAlphabetizedContact(): LiveData<List<Contact>>
 
+    @Query("SELECT * from Contact WHERE name like :name ORDER BY name ASC ")
+    fun search(name: String): LiveData<List<Contact>>
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insert(word: Contact)
+    suspend fun insert(word: List<Contact>)
 
     @Query("DELETE FROM Contact")
     suspend fun deleteAll()
+
+
 }

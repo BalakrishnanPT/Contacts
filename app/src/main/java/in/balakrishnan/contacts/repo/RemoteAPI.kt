@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface RemoteAPI {
     @GET("users")
-    fun getContacts(): Call<List<Contact>>
+    suspend fun getContacts(): List<Contact>
 }

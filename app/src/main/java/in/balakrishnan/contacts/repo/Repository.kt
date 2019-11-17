@@ -5,5 +5,5 @@ import `in`.balakrishnan.contacts.repo.model.Either
 import androidx.lifecycle.LiveData
 
 interface Repository {
-  fun getContacts(): LiveData<Either<List<Contact>>>
+  suspend fun getContacts(): Either<List<Contact>>
 }
