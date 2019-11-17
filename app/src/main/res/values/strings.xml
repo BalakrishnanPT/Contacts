@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Contacts</string>
+    <string name="search_hint">Type name to Search</string>
 </resources>
