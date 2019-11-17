@@ -1,9 +1,9 @@
 package `in`.balakrishnan.contacts.repo
 
 import `in`.balakrishnan.contacts.Injection
-import `in`.balakrishnan.contacts.model.ApiError
-import `in`.balakrishnan.contacts.model.Contact
-import `in`.balakrishnan.contacts.model.Either
+import `in`.balakrishnan.contacts.repo.model.ApiError
+import `in`.balakrishnan.contacts.repo.model.Contact
+import `in`.balakrishnan.contacts.repo.model.Either
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import retrofit2.Call

@@ -1,6 +1,6 @@
 package `in`.balakrishnan.contacts.repo
 
-import `in`.balakrishnan.contacts.model.Contact
+import `in`.balakrishnan.contacts.repo.model.Contact
 import retrofit2.Call
 import retrofit2.http.GET
 
