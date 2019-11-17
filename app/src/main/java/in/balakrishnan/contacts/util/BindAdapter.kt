@@ -1,11 +1,9 @@
-package `in`.balakrishnan.contacts.contactListing
+package `in`.balakrishnan.contacts.util
 
-import `in`.balakrishnan.contacts.generateImage
 import `in`.balakrishnan.contacts.repo.model.Contact
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
 
 
 /**
@@ -23,14 +21,16 @@ object BindAdapter {
     @JvmStatic
     @androidx.databinding.BindingAdapter("profileImage")
     fun loadImage(view: ImageView, contact: Contact) {
+        // If there is url available, Add condition to load image from given url
+
+        view.generateImage(contact.name[0].toString())
+/*
         Glide.with(view.context)
             .load(
-                // If there is url available, Add condition to load image if it is available
-                generateImage(view, contact.name[0].toString())
             )
             .circleCrop()
             .fitCenter()
-            .into(view)
+            .into(view)*/
     }
 
     @JvmStatic

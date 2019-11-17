@@ -1,7 +1,7 @@
 package `in`.balakrishnan.contacts
 
 import `in`.balakrishnan.contacts.contactListing.ContactsAdapter
-import `in`.balakrishnan.contacts.contactListing.CustomClickListner
+import `in`.balakrishnan.contacts.util.CustomClickListner
 import `in`.balakrishnan.contacts.databinding.ActivityMainBinding
 import `in`.balakrishnan.contacts.repo.model.Contact
 import `in`.balakrishnan.contacts.repo.model.Status

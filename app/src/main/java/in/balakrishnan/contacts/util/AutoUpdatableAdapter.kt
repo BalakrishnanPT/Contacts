@@ -1,4 +1,4 @@
-package `in`.balakrishnan.contacts.contactListing
+package `in`.balakrishnan.contacts.util
 
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView

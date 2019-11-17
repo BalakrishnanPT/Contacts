@@ -39,4 +39,5 @@ object Injection {
   fun provideRemoteAPI(): RemoteAPI {
     return provideRetrofit().create(RemoteAPI::class.java)
   }
+
 }

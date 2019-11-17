@@ -1,4 +1,4 @@
-package `in`.balakrishnan.contacts
+package `in`.balakrishnan.contacts.util
 
 import android.graphics.*
 import android.view.LayoutInflater
@@ -33,7 +33,7 @@ fun generateRandomColor(): Int {
     return Color.rgb(red, green, blue)
 }
 
-fun generateImage(view: ImageView, toString: String): Bitmap {
+fun ImageView.generateImage(toString: String) {
     val width = 200
     val height = 200
     val textSize = 40f
@@ -48,7 +48,7 @@ fun generateImage(view: ImageView, toString: String): Bitmap {
         (bitmap.width / 2).toFloat(),
         paint
     )
-    val scale = view.context.resources.displayMetrics.density
+    val scale = context.resources.displayMetrics.density
 
     paint.textAlign = Paint.Align.CENTER
     paint.color = Color.WHITE
@@ -64,6 +64,5 @@ fun generateImage(view: ImageView, toString: String): Bitmap {
         (bitmap.height / 2 + bounds.height() / 2).toFloat(),
         paint
     )
-
-    return bitmap
+    setImageBitmap(bitmap)
 }

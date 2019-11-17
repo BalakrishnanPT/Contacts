@@ -3,6 +3,8 @@ package `in`.balakrishnan.contacts.contactListing
 import `in`.balakrishnan.contacts.BR
 import `in`.balakrishnan.contacts.R
 import `in`.balakrishnan.contacts.repo.model.Contact
+import `in`.balakrishnan.contacts.util.AutoUpdatableAdapter
+import `in`.balakrishnan.contacts.util.CustomClickListner
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -15,7 +17,8 @@ import kotlin.properties.Delegates
 
 class ContactsAdapter(
     private val listener: CustomClickListner<Contact>
-) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>(), AutoUpdatableAdapter {
+) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>(),
+    AutoUpdatableAdapter {
 
     var contacts: List<Contact> by Delegates.observable(emptyList()) { prop, old, new ->
         autoNotify(old, new) { o, n -> o.id == n.id }
