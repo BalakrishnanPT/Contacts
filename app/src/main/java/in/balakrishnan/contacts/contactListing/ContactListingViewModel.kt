@@ -34,6 +34,7 @@ class ContactListingViewModel(application: Application) : AndroidViewModel(appli
             allContacts.value = it
             allContacts.removeSource(search)
         }
+
     }
 
     // The ViewModel maintains a reference to the repository to get data.

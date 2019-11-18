@@ -5,7 +5,6 @@ import `in`.balakrishnan.contacts.R
 import `in`.balakrishnan.contacts.repo.model.Contact
 import `in`.balakrishnan.contacts.util.AutoUpdatableAdapter
 import `in`.balakrishnan.contacts.util.CustomClickListner
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -19,7 +18,7 @@ class ContactsAdapter(
     private val listener: CustomClickListner<Contact>
 ) : RecyclerView.Adapter<ContactsAdapter.ViewHolder>(),
     AutoUpdatableAdapter {
-
+    var searchString = ""
     var contacts: List<Contact> by Delegates.observable(emptyList()) { prop, old, new ->
         autoNotify(old, new) { o, n -> o.id == n.id }
     }
@@ -46,8 +45,11 @@ class ContactsAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(contacts[position])
-        Log.d(TAG, "onBindViewHolder: $position ")
+        var visibility = true
+        if (position > 0)
+            if (contacts[position].name[0].equals(contacts[position - 1].name[0]))
+                visibility = false
+        holder.bind(contacts[position], visibility)
     }
 
     inner class ViewHolder(private val binding: ViewDataBinding) :
@@ -55,10 +57,12 @@ class ContactsAdapter(
 
         private lateinit var contact: Contact
 
-        fun bind(contact: Contact) {
+        fun bind(contact: Contact, visibility: Boolean) {
             this.contact = contact
 
             this.binding.setVariable(BR.item, contact);
+            this.binding.setVariable(BR.labelVisibility, visibility)
+            this.binding.setVariable(BR.searchString, searchString)
             this.binding.executePendingBindings();
 
             itemView.tvLabel.text = contact.name[0].toString()

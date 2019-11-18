@@ -18,6 +18,7 @@ fun String.isNullOrBlankOrNullString() =
 
 
 fun generateRandomColor(): Int {
+
     val mRandom = Random(System.currentTimeMillis())
 
     val baseColor = Color.argb(255, mRandom.nextInt(50), mRandom.nextInt(50), mRandom.nextInt(50))
