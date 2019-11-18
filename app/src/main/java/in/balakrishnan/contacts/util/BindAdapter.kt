@@ -2,13 +2,9 @@ package `in`.balakrishnan.contacts.util
 
 import `in`.balakrishnan.contacts.repo.model.Contact
 import android.graphics.Color
-import android.graphics.Typeface
 import android.text.Spannable
-import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.style.BackgroundColorSpan
-import android.text.style.StyleSpan
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -57,15 +53,20 @@ object BindAdapter {
 
         val backgroundColorSpan = BackgroundColorSpan(Color.GREEN)
 
-        string
-            .setSpan(
-                backgroundColorSpan,
-                indexOf,
-                indexOf + search.length,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
-
-        view.setText(string, TextView.BufferType.SPANNABLE)
+//        string
+//            .setSpan(
+//                backgroundColorSpan,
+//                indexOf,
+//                indexOf + search.length,
+//                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+//            )
+        string.setSpan(
+            BackgroundColorSpan(-0x333334),
+            indexOf,
+            indexOf + search.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        view.text = string
 
     }
 
