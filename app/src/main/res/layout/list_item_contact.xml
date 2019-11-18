@@ -12,8 +12,12 @@
             type="in.balakrishnan.contacts.repo.model.Contact" />
 
         <variable
-            name="lableVisibility"
+            name="labelVisibility"
             type="Boolean" />
+
+        <variable
+            name="searchString"
+            type="String" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,15 +36,15 @@
 
         <TextView
             android:id="@+id/tvLabel"
-            headerText="@{item.name}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
             android:gravity="center"
             android:textAlignment="center"
-            android:textSize="@dimen/contact_text_size"
-            android:visibility="visible"
             android:textColor="@color/contactLabelColor"
+            android:textSize="@dimen/contact_text_size"
+            android:visibility="@{labelVisibility?View.VISIBLE:View.GONE}"
+            app:headerText="@{item.name}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/guide"
             app:layout_constraintStart_toStartOf="parent"
@@ -49,12 +53,12 @@
 
         <ImageView
             android:id="@+id/ivProfile"
-            profileImage="@{item}"
             android:layout_width="40dp"
             android:layout_height="40dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@id/guide"
             app:layout_constraintTop_toTopOf="parent"
+            app:profileImage="@{item}"
             tools:src="@tools:sample/avatars" />
 
         <TextView
@@ -65,12 +69,13 @@
             android:ellipsize="end"
             android:gravity="center_vertical"
             android:maxLines="1"
-            android:text="@{item.name}"
             android:textColor="@color/contactNameColor"
             android:textSize="@dimen/contact_text_size"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/ivProfile"
             app:layout_constraintTop_toTopOf="parent"
+            app:original="@{item.name}"
+            app:search="@{searchString}"
             tools:text="@tools:sample/full_names" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
