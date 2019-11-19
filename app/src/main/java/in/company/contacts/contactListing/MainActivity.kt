@@ -58,8 +58,9 @@ class MainActivity : AppCompatActivity() {
             this,
             R.layout.activity_main
         )
+        binding.lifecycleOwner = this
 
-        contactsAdapter = ContactsAdapter(
+        contactsAdapter = ContactsAdapter(this, viewModel.searchText,
             object : CustomClickListner<Contact> {
                 override fun onClick(v: View, data: Contact) {
                 }
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.rvContacts.adapter = contactsAdapter
 
+        // update the recyclerview based on the livedata
         viewModel.allContacts.observe(this, Observer {
             contactsList = it as MutableList<Contact>
             if (contactsList.size > 0) {
@@ -77,16 +79,24 @@ class MainActivity : AppCompatActivity() {
                 )
             }
             contactsAdapter.updateContacts(contactsList)
+            rvContacts.recycledViewPool.clear()
         })
 
-        // Verify the action and get the query
+        //Handles the search intent
         if (Intent.ACTION_SEARCH == intent.action) {
             intent.getStringExtra(SearchManager.QUERY)?.also { query ->
                 viewModel.searchForText(query)
-                contactsAdapter.searchString = query
             }
         }
 
+        setUpNetWorkStateListener()
+
+    }
+
+    /**
+     * This is the method that handles auto reload if data is not present and internet connection is available for the first time
+     */
+    private fun setUpNetWorkStateListener() {
         Transformations.distinctUntilChanged(connectionStateMonitor).observe(this, Observer {
             log("connectionStateMonitor called $it")
             if (it) {
@@ -106,10 +116,11 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
-
-
     }
 
+    /**
+     * Helper function for setting List's visibility
+     */
     private fun setListingVisibility(b: Boolean) {
         if (!b) {
             val message = if (viewModel.isDataAvailableOffline()) AppConstants.errorNoSearchResult
@@ -120,6 +131,9 @@ class MainActivity : AppCompatActivity() {
         flEs.setVisible(!b)
     }
 
+    /**
+     * This method used for setting up the search view and its behaviour
+     */
     private fun searchViewSetup(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.option_main, menu)
         val searchManager = getSystemService(Context.SEARCH_SERVICE) as SearchManager
@@ -155,7 +169,6 @@ class MainActivity : AppCompatActivity() {
 
             override fun onQueryTextChange(p0: String?): Boolean {
                 if (p0 != null) {
-                    contactsAdapter.searchString = p0
                     viewModel.searchForText(p0)
                 }
                 return true

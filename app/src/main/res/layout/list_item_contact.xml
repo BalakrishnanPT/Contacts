@@ -5,11 +5,15 @@
 
     <data>
 
-            <import type="android.view.View" />
+        <import type="android.view.View" />
 
-            <variable
-                name="item"
-                type="in.company.contacts.repo.model.Contact" />
+        <import
+            alias="LiveData"
+            type="androidx.lifecycle.LiveData" />
+
+        <variable
+            name="item"
+            type="in.company.contacts.repo.model.Contact" />
 
         <variable
             name="labelVisibility"
@@ -17,8 +21,10 @@
 
         <variable
             name="searchString"
-            type="String" />
-
+            type="LiveData&lt;String>" />
+<variable
+    name="owner"
+    type="androidx.lifecycle.LifecycleOwner" />
         <variable
             name="listener"
             type="in.company.contacts.util.CustomClickListner" />
@@ -81,6 +87,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:original="@{item.name}"
             app:search="@{searchString}"
+            app:owner="@{owner}"
             tools:text="@tools:sample/full_names" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
